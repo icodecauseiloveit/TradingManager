@@ -1,7 +1,7 @@
 import pytest
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from app.routes import user_routes
+from app.routes import user_routes, trader_routes
 from app.database import create_db_and_tables
 
 def run_tests():
@@ -16,7 +16,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 app.include_router(user_routes.router)
-
+app.include_router(trader_routes.router)
 
 # uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 # uvicorn app.main:app --reload
